@@ -1,7 +1,9 @@
+#include <iomanip>
 #include <iostream>
 #include <random>
 
 int main() {
+  std::cout << std::setprecision(17);
 
   std::random_device rd{};
   std::mt19937 gen(rd());
@@ -13,17 +15,20 @@ int main() {
   int insideC{0};
   int outsideC{0};
 
-  for (int i{0}; i < 1000; ++i) {
-    x = randPos(gen);
-    y = randPos(gen);
-    if ((x * x) + (y * y) <= 1) {
-      ++insideC;
-    } else {
-      ++outsideC;
+  for (int i{0}; i < 5; ++i) {
+    for (int j{0}; j < 1000; ++j) {
+      x = randPos(gen);
+      y = randPos(gen);
+      if ((x * x) + (y * y) <= 1) {
+        ++insideC;
+      } else {
+        ++outsideC;
+      }
     }
-  }
 
-  std::cout << insideC / outsideC;
+    double pi = 4.0 * insideC / (insideC + outsideC);
+    std::cout << pi << '\n';
+  }
 
   return 0;
 }
