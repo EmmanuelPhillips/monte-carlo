@@ -15,20 +15,18 @@ int main() {
   int insideC{0};
   int outsideC{0};
 
-  for (int i{0}; i < 5; ++i) {
-    for (int j{0}; j < 100000000; ++j) {
-      x = randPos(gen);
-      y = randPos(gen);
-      if ((x * x) + (y * y) <= 1) {
-        ++insideC;
-      } else {
-        ++outsideC;
-      }
+  for (int j{0}; j < 1000000000; ++j) {
+    x = randPos(gen);
+    y = randPos(gen);
+    if ((x * x) + (y * y) <= 1) {
+      ++insideC;
+    } else {
+      ++outsideC;
     }
-
-    double pi = 4.0 * insideC / (insideC + outsideC);
-    std::cout << pi << '\n';
   }
+
+  double pi = 4.0 * insideC / (insideC + outsideC);
+  std::cout << pi << '\n';
 
   return 0;
 }
